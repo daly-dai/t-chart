@@ -1,0 +1,48 @@
+/* 网站-顶部工具栏 */
+.logo-box {
+  img {
+    width: 40px;
+    height: 40px;
+  }
+  > div {
+    span {
+      display: block;
+      padding: 2px 0;
+      font-size: 14px;
+      color: rgb(51, 51, 51);
+    }
+    > span:nth-child(2) {
+      width: 73px;
+      font-size: 9px;
+      color: rgba(0, 128, 255, 100);
+      text-align: center;
+      background-color: rgba(242, 248, 255);
+    }
+  }
+}
+.right-box {
+  div {
+    padding: 0 3px;
+  }
+}
+.button-group-cls {
+  padding: 0 34px !important;
+  & :hover {
+    color: rgb(73, 137, 244);
+  }
+}
+.active-cls {
+  background-color: rgb(231, 234, 237);
+  background-image: url('@{assets}/images/header-active.png');
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 30%;
+}
+.logout {
+  margin-right: 7px;
+  .f-14;
+  .pointer;
+  i {
+    .f-14;
+  }
+}

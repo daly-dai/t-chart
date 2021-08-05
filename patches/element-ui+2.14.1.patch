@@ -1,0 +1,14 @@
+diff --git a/node_modules/element-ui/lib/element-ui.common.js b/node_modules/element-ui/lib/element-ui.common.js
+index bc2800f..84a7d68 100644
+--- a/node_modules/element-ui/lib/element-ui.common.js
++++ b/node_modules/element-ui/lib/element-ui.common.js
+@@ -7728,7 +7728,8 @@ var selectvue_type_template_id_0e4aade6_render = function() {
+                     "el-select__caret el-input__icon el-icon-circle-close",
+                   on: { click: _vm.handleClearClick }
+                 })
+-              : _vm._e()
++              : _vm._e(),
++			  _vm.$slots.suffix
+           ])
+         ],
+         2

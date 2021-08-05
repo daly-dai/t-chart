@@ -1,0 +1,12 @@
+/* 包含 Tailwind 到您的 CSS 中 */
+
+/* https://www.tailwindcss.cn/docs/installation */
+
+/* 官网中说如果是 React 或 Vue 项目的话可以使用`import "tailwindcss/tailwind.css"`在main.js中， */
+
+/* 但我引入这个路径的文件后发现 autoprefixer 居然不起作用，所以这里的 vue 项目我觉得指的不是 webpack 创建的项目， */
+
+/* 因为在官网中说 如果您使用的是 postcss-import 则可以用下面的方式导入，而这种方式导入 autoprefixer 是起效的 */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';

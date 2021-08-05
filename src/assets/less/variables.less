@@ -1,0 +1,228 @@
+/* 变量 */
+
+/* 网站公共 start */
+@page_width: 1300px; // 页面宽度
+@page_height: 720px; // 页面高度
+@web-title-font: @f-16; // 网站标题文字大小
+@web-title-color: @white; // 网站标题文字颜色
+@page-bgColor: #e7ebf0; // 背景色
+@block-bgColor: rgba(255, 255, 255, 1); // 模块的背景色
+@block-hover-bgColor: @menu-active-font-color; // 移动到块上的背景色
+@title-font-size: @f-16; // 标题文字字体大小
+@title-font-color: rgba(0, 0, 0, 1); // 标题文字颜色
+@title-font-weight: 700; // 标题文字加粗值
+@web-north-panel-height: 64px; // 网站-顶部高度
+@web-west-panel-width: 200px; // 网站-左侧宽度
+@border-width: 1px; // 边框1px
+@border-style: solid; // 边框样式
+@border-radius: 2px; // 圆角
+@border-weight: @border-width @border-style @weight-border-color; // 深色边框
+@border-light: @border-width @border-style @light-border-color; // 浅色边框
+
+@font-size-large-x: @f-18; // 网站字体分类 （特大）
+@font-size-large: @f-16; // 网站字体分类 （大）
+@font-size-medium: @f-14; // 中
+@font-size-small: @f-12; // 小
+@font-size-mini: 8px; // 超小
+
+@normal-letter-spacing: 1px; // 文字的间隔
+
+/* 网站公共 end */
+
+/* 网站顶部工具栏 start */
+@page-topBar-height: @web-north-panel-height;
+@page-topBar-bgColor: rgba(255, 255, 255, 0.85);
+@page-topBar-box-shadow: 0px 2px 6px 0px rgba(24, 31, 71, 0.5);
+@page-topBar_padding: 0px 18px; // 内边距
+
+/* 网站顶部工具栏 end */
+
+/* 菜单 start */
+@menu-width: @web-west-panel-width;
+@menu-item-width: 168px;
+@menu-item-height: 48px;
+@menu-active-radius: @border-radius; // 选中菜单item的圆角值
+@menu-bgColor: @white;
+@menu-icon-width: @f-12;
+@menu-icon-height: @f-12;
+@menu-font-size: @f-14;
+@menu-font-color: rgba(29, 31, 36, 1); // 一级menu字体颜色
+@menu-child-font-color: rgba(29, 31, 36, 0.65); // 子级menu字体颜色
+@menu-active-bgColor: rgba(224, 240, 255, 1); // 菜单选中色
+@menu-hover-bgColor: rgba(224, 240, 255, 0.5); // 菜单移动上去的颜色
+@menu-active-font-color: rgba(66, 147, 244, 1); // 菜单选中文字色
+@menu-icon-text-padding: 0px 10px 0px 0px;
+
+/* 菜单 end */
+
+/* 面包屑 start */
+@breadcrumb-height: 32px;
+@breadcrumb-bgColor: @white;
+@breadcrumb-font-size: @f-12;
+@breadcrumb-font-color: rgba(138, 146, 153, 1);
+@breadcrumb-last-font-color: rgba(0, 0, 0, 1); // 面包屑最后一级的字体颜色
+@breadcrumb-padding: 0 17px; // 面板屑和父级面板的边距
+
+/* 面包屑 end */
+
+/* 中间内容区域 start */
+@content-padding: 24px;
+
+/* 中间内容区域 end */
+
+/* grid 表格 start */
+@tableHeader-height: 48px; // 表头行高
+@tableRow-height: 48px; // 数据行高
+@tableHeader-bgColor: rgba(248, 249, 251, 1); // 表头背景色
+@tableHeader-font-color: @weight-black-color; // 表头字体颜色
+@tableHeader-font-size: @f-14; // 表头字体大小
+@tableHeader-font-weight: 500; // 表头字体加粗值
+@tableRow-font-size: @f-14; // 数据行字体
+@tableRow-font-color: rgba(29, 31, 36, 1); // 数据行字体
+
+/* grid 表格 end */
+
+/* tree 树形控件 start */
+@tree-node-height: 40px;
+@tree-font-color: rgba(29, 31, 36, 1);
+@tree-font-size: @f-14;
+.tree-node-hover {
+  font-weight: @title-font-weight;
+  color: @weight-black-color;
+  background-color: rgba(224, 240, 255, 1);
+} // 选中和移动上去的样式
+
+/* tree 树形控件 end */
+
+/* 表单form start */
+@form-input-width: 362px; // 表单input的宽度
+@form-input-height: @button-main-small-height; // 表单input控件的宽度
+@form-ud-padding: 0px 20px; // 表单组件上下两个组件之间的padding值（上下）
+@form-lf-padding: 26px 0px; // 表单组件上下两个组件之间的padding值（左右）
+
+/* 表单form end */
+
+/* 下拉面板 dropDown start */
+@dropDown-width: 123px;
+@dropDown-height: 36px;
+@dropDown-ttb-padding: 10px; // 文字距离边框上下的间距
+@dropDown-tl-padding: 20px; // 文字距离边框左边的间距
+@dropDown-font-size: @f-12;
+@dropDown-font-color: rgba(0, 0, 0, 0.65);
+@dropDown-border-color: @light-border-color;
+@dropDown-warn-menu-item-color: @red; // 警告类型文字颜色
+.dropDown-warn-menu-item-color {
+  font-size: @font-size-small;
+  color: @red;
+} // 警告类型样式（比如：删除）
+
+/* 下拉面板 dropDown end */
+
+/****** 基础变量 start *******/
+// 字体
+@font-normal-size: @f-14; // 网站普通字体
+@font-family-style: 'Roboto', Tahoma, Arial, 'Microsoft YaHei', 'SimHei',
+  'SimSun'; // 字体（英文和中文）
+// 深色
+@weight-black-color: rgba(0, 0, 0, 1);
+@weight-border-color: rgba(231, 235, 240, 1); // 深色变量
+.weight-black-color-fn (@a: 0.5) {
+  color: rgba(0, 0, 0, @a);
+}
+// 浅色
+@fill-1: #fff;
+@text: #3c3c3c;
+@text-1: #757575;
+@text-2: #222;
+@light-border-color: rgba(247, 247, 247, 1); // 浅色变量
+@fill-sky-blue: #ecf5ff; // 天空蓝
+// 背景和边框色
+@base: #fd9b57;
+@bg: #e7ebf0;
+@border: rgba(246, 250, 254, 1);
+// 基础 color
+@white: rgba(255, 255, 255, 1);
+@blue: #324157;
+@light-blue: #3a71a8;
+@red: rgba(241, 57, 57, 1);
+@pink: #e65d6e;
+@green: #30b08f;
+@tiffany: #4ab7bd;
+@yellow: #fec171;
+@panGreen: #30b08f;
+// 目录变量
+@assets: '~@assets';
+
+/****** 基础变量 end *******/
+
+/***** 中后台系统设计规范 *****/
+
+/*** 字体 start ***/
+// 字体
+@f-12: 12px;
+@f-14: 14px;
+@f-16: 16px;
+@f-18: 18px;
+@f-20: 20px;
+@f-24: 24px;
+@f-32: 32px;
+@f-42: 42px;
+// 行高
+@lh-22: 22px;
+@lh-24: 24px;
+@lh-26: 26px;
+@lh-28: 28px;
+@lh-32: 32px;
+@lh-38: 38px;
+@lh-52: 52px;
+@lh-68: 68px;
+
+/*** 字体 end ***/
+
+/*** 颜色 start ***/
+// 功能色
+@control-bgColor-success: #0c9363; // 成功
+@control-bgColor-fail: #f13939; // 失败
+@control-bgColor-warn: #faad14; // 警告
+@control-bgColor-disabled-success: rgba(12, 147, 99, 0.4); // 成功-禁用
+@control-bgColor-disabled-fail: #f9b0b0; // 失败-禁用
+@control-bgColor-disabled-warn: #fddea1; // 警告-禁用
+@control-bgColor-hover-success: #097750; // 成功-hover
+@control-bgColor-hover-fail: #c00000; // 失败-hover
+@control-bgColor-waiting: #4293f4; // 加载进行等默认蓝
+
+/** 延展应用 start **/
+// 描边1px-组件边框色
+@control-border-normal-1px: 1px solid #cfd2d4; // 描边1px-组件边框色
+@control-border-hover-1px: 1px solid #4293f4; // 描边1px-组件边框色-hover
+@control-border-disabled-1px: 1px solid #cfd2d4; // 描边1px-组件边框色-disabled
+@control-dotted-border-normal-1px: 1px solid #cfd2d4; // 描边虚线1px-组件边框色
+@control-dotted-border-hover-1px: 1px solid #4293f4; // 描边虚线1px-组件边框色-hover
+@control-dotted-border-disabled-1px: 1px solid #cfd2d4; // 描边虚线1px-组件边框色-disabled
+
+/** 延展应用 end **/
+
+/*** 颜色 end ***/
+
+/*** 按钮 start ***/
+
+/** 主按钮 start **/
+@button-main-bgColor: #4293f4; // 正常
+@button-warn-bgColor: #f13939; // 警告
+
+@button-main-large-height: 40px; // 尺寸（大）
+@button-main-large-padding: 24px 40px; // 边距
+
+@button-main-small-height: 32px; //（中）
+@button-main-small-padding: 24px 32px;
+
+@button-main-mini-height: 24px; // （小）
+@button-main-mini-padding: 16px 24px;
+
+@button-main-large-compose-padding: 0px 16px 0px 0px; // 按钮组合的右边距 大
+@button-main-small-compose-padding: 0px 8px 0px 0px; // 按钮组合的右边距 中
+@button-main-mini-compose-padding: 0px 8px 0px 0px; // 按钮组合的右边距 小
+
+/** 主按钮 end **/
+
+/*** 按钮 end ***/

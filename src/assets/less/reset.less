@@ -1,0 +1,86 @@
+div,
+span,
+ul,
+li,
+input,
+i,
+em,
+table,
+tr,
+td {
+  outline: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+// icon 图标默认右侧的外边距
+.iconfont {
+  margin-right: 5px !important;
+}
+
+.icon {
+  width: 1em;
+  height: 1em; // iconfont 字体symbol图表尺寸
+  overflow: hidden;
+  vertical-align: -0.15em;
+  fill: currentColor;
+}
+
+/**** 火狐浏览器滚动条样式 ****/
+
+* {
+  scrollbar-color: rgb(178, 178, 178) transparent; /* 滑块颜色  滚动条背景颜色 */
+  scrollbar-width: thin; /* 滚动条宽度有三种：thin、auto、none */
+  -ms-scrollbar-track-color: transparent;
+  scrollbar-track-color: transparent;
+}
+
+/**** 谷歌浏览器滚动条样式 ****/
+
+/* 滚动条整体样式外部 滚动条宽度和高度分别代表横竖滚动条的宽度和高度 */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* 滚动条里面的上下箭头按钮,允许通过点击微调滚动条的位置 一般隐藏 */
+*::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* 滚动条横竖滚动条交汇样式 一般设置透明 */
+*::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/* 滚动条内部 */
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* 滚动条轨道 设置透明 */
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+}
+
+/* 滚动条轨道 设置透明 */
+*::-webkit-scrollbar-track-piece {
+}
+
+*::-webkit-resizer {
+}
+
+/* 滚动条内部 鼠标经过样式 */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+}

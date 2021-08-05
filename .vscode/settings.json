@@ -1,0 +1,178 @@
+{
+  "eslint.codeAction.disableRuleComment": {},
+  "eslint.enable": true,
+  // 保存文件时自动修复一些eslint的语法例如：多写了一个空格
+  "eslint.autoFixOnSave": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  // vscode默认启用了根据文件类型自动设置tabsize的选项
+  "editor.detectIndentation": false,
+  // 重新设定tabsize
+  "editor.tabSize": 2,
+  "editor.fontSize": 18,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "html",
+      "autoFix": true
+    },
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.codeAction.showDocumentation": {},
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.confirmSync": false,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.zoomLevel": 0,
+  "cSpell.userWords": [
+    "Popconfirm",
+    "Vuex",
+    "browserslistrc",
+    "chunkhash",
+    "cnpm",
+    "devtool",
+    "echarts",
+    "inited",
+    "nprogress",
+    "prefetch",
+    "pxtorem",
+    "unicom",
+    "vant"
+  ],
+  "javascript.updateImportsOnFileMove.enabled": "always", // import路径移动或者重命名时，自动更新:
+  "diffEditor.ignoreTrimWhitespace": false, // 为了得到diff来显示空白，类似于git diff
+  "explorer.autoReveal": false, //  设置取消打开文件目录的自动定位跟踪功能
+  "workbench.sideBar.location": "left", // 边栏位置调整到左侧
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // 这里的配置和项目内的 .stylelintignore 中的 rules 同步
+  "stylelint.config": {
+    "defaultSeverity": "error",
+    // 'stylelint-order' 强制你按照某个顺序编写 css，顺序对应由 stylelint-config-recess-order 插件提供
+    "plugins": ["stylelint-order"], // https://github.com/hudochenkov/stylelint-order
+    "extends": [
+      "stylelint-config-standard", // 配置 Stylelint 规则
+      "stylelint-config-prettier",
+      "stylelint-config-recess-order" // stylelint-order 插件的第三方配置，css属性顺序的规则（例如先写定位，再写盒模型，再写内容区样式，最后写 CSS3 相关属性）
+    ],
+    "rules": {
+      "block-no-empty": null,
+      "color-no-invalid-hex": true,
+      "max-empty-lines": 2,
+      "declaration-colon-space-after": "always",
+      /* 'comment-empty-line-before': ['always', {
+        ignore: ['between-comments', 'stylelint-commands']
+      }],
+      'rule-nested-empty-line-before': ['always', {
+        except: ['first-nested'],
+        ignore: ['after-comment']
+      }], */
+      // 允许的单位
+      "unit-allowed-list": [
+        "em",
+        "rem",
+        "%",
+        "s",
+        "ms",
+        "px",
+        "vh",
+        "deg",
+        "pr",
+        "rpx",
+        "fr"
+      ],
+      "unit-no-unknown": [
+        true,
+        { "ignoreUnits": ["pr", "rpx"], "ignoreFunctions": [] }
+      ],
+      // 使用以下命令指定必须使用的引号
+      "font-family-name-quotes": "always-unless-keyword",
+      "function-url-quotes": "always",
+      "selector-attribute-quotes": "always",
+      "string-quotes": "single",
+      // 如果使用 autoprefixer，则要使用以下命令禁止供应商前缀
+      "at-rule-no-vendor-prefix": true,
+      "media-feature-name-no-vendor-prefix": true,
+      "property-no-vendor-prefix": true,
+      "selector-no-vendor-prefix": true,
+      "value-no-vendor-prefix": true,
+      // 使用以下方法控制特异性
+      "max-nesting-depth": 4,
+      "selector-max-compound-selectors": 4,
+      // 格式为 "id,class,type" 0个id总数 5个class总数 0个type类选择器总数
+      // .app .bbb .ccc {} 这样会报错因为class的个数大于2
+      // #app {} 这样也会报错因为id的数量是0
+      // p {} 这样写不会报错
+      // .foo div {} 这样写不会报错
+      // .foo div { & div a {} }  这样写不会报错
+      "selector-max-specificity": "0,5,0", // https://blog.csdn.net/tangxiaolang101/article/details/51760358
+      // 指定可接受的选择器类型，单位，属性，函数和注释中的单词
+      "color-named": "always-where-possible",
+      "color-no-hex": true,
+      "selector-max-id": 3,
+      "selector-max-type": 3,
+      // 使用以下一种或多种有效表示形式时，请指定一种表示法
+      "font-weight-notation": "numeric",
+      // 指定允许的URL类型
+      "function-url-no-scheme-relative": true,
+      // 指定最大行长
+      "max-line-length": [80, { "ignore": ["non-comments"] }],
+      "selector-pseudo-class-no-unknown": [
+        true,
+        {
+          "ignorePseudoClasses": ["global"]
+        }
+      ],
+      "font-family-no-missing-generic-family-keyword": [
+        true,
+        {
+          "ignoreFontFamilies": ["SimSun", "pmzd"]
+        }
+      ]
+    }
+  },
+  "stylelint.autoFixOnSave": true,
+  "todohighlight.exclude": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.vscode/**",
+    "**/.github/**",
+    "**/_output/**",
+    "**/*.min.*",
+    "**/*.map",
+    "**/.next/**"
+  ],
+  // 防止编辑器内置linter与插件冲突设置
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  // 启用stylelint插件
+  "stylelint.enable": true,
+  "stylelint.configOverrides": {}
+  /* "editor.rulers": [
+    80,120
+  ] */
+}

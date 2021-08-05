@@ -1,0 +1,8 @@
+{
+  "src/**/*.{js,jsx,vue}": ["eslint", "prettier --write"],
+  "src/**/((?!iconfont.css)(*.{vue,css,less}))": [
+    "stylelint",
+    "prettier --write"
+  ],
+  "*.{json,md}": ["prettier --write", "git add"]
+}

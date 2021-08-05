@@ -1,0 +1,46 @@
+.container {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* north start */
+.north-cls {
+  padding: @page-topBar_padding !important;
+  background-color: @page-topBar-bgColor !important;
+  box-shadow: @page-topBar-box-shadow;
+  .z-index-10;
+}
+
+/* north end */
+.inner-box {
+}
+.border-bottom {
+  .border-bottom-fn();
+}
+
+/* west start */
+.west-box {
+  background-color: @block-bgColor;
+}
+
+/* west end */
+.inner-north-box {
+  padding: @breadcrumb-padding !important;
+  border: none;
+  border-left: @border-weight;
+  .bg-fff;
+}
+.inner-center-box {
+  > div {
+    box-sizing: border-box;
+    padding: 15px 25px 0 21px;
+  }
+}
+
+/****  basic2-layout.vue  ****/
+.button-group-cls {
+  padding: 0 34px !important;
+  & :hover {
+    color: rgb(73, 137, 244);
+  }
+}

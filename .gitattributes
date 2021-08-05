@@ -1,0 +1,9 @@
+* text=auto
+*.js    eol=lf
+*.jsx   eol=lf
+*.json  eol=lf
+*.vue  eol=lf
+*.less  eol=lf
+*.scss  eol=lf
+yarn.lock -diff
+package-lock.json -diff
