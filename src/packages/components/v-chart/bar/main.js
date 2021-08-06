@@ -70,6 +70,7 @@ export const bar = {
       },
       series: []
     };
+
     return {};
   },
   methods: {
@@ -124,6 +125,9 @@ export const bar = {
       //   this.setExtraOptions(options);
       // }
       // this.setBarSeriesOptions(options.series);
+      if (this.setExtraOptions) {
+        this.setExtraOptions(options);
+      }
     },
     /**
      * @description 设置柱状图相关的series的配置

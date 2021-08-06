@@ -56,6 +56,9 @@ const lightTheme = {
     axisTick: {
       show: false
     },
+    axisLine: {
+      show: true
+    },
     axisLabel: {
       color: 'rgba(0, 0, 0, 85)',
       fontSize: 12,
@@ -78,7 +81,7 @@ const lightTheme = {
       align: 'center'
     },
     axisLine: {
-      show: false
+      show: true
     },
     axisTick: {
       show: false

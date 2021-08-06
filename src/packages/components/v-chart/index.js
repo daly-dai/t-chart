@@ -1,5 +1,5 @@
 // e-charts
-import { BaseBarChart } from './bar/index.js';
+import { BaseBarChart, BaseGroupBarChart } from './bar/index.js';
 import { BaseLineChart } from './line/index.js';
 import { BasePieChart } from './pie/index.js';
 import { BaseMixtureChart } from './mixture/index.js';
@@ -12,7 +12,8 @@ const BaseVChart = {
   BasePieChart,
   BaseMixtureChart,
   BaseGeoChart,
-  BaseGeoVisualChart
+  BaseGeoVisualChart,
+  BaseGroupBarChart
 };
 
 // export { BaseVChart };
