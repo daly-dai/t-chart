@@ -61,8 +61,8 @@ export const groupBar = {
     getExtraDefaultOptions() {
       this.defaultGroupGird = [
         {
-          top: 80,
-          bottom: 101
+          top: '4%',
+          bottom: 80
         },
         {
           height: 40,
@@ -108,7 +108,7 @@ export const groupBar = {
           formatter: '{b}',
           offset: [0, 10],
           textStyle: {
-            color: '#eee'
+            color: '#333'
           }
         },
         type: 'bar',
@@ -116,7 +116,7 @@ export const groupBar = {
         barWidth: '',
         itemStyle: {
           normal: {
-            color: 'rgba(40,191,126, 0)'
+            color: 'rgba(40,191,126, 1)'
           }
         },
         xAxisIndex: 1,
@@ -129,9 +129,8 @@ export const groupBar = {
     setExtraOptions(options) {
       this.getExtraDefaultOptions();
 
-      console.log(options, 777777);
       // 设置gird
-      _set(options, 'gird', this.defaultGroupGird);
+      _set(options, 'grid', this.defaultGroupGird);
 
       // 设置x轴
       if (options.xAxis) {
@@ -162,19 +161,21 @@ export const groupBar = {
       _set(this.groupSeriesItem, 'itemStyle.normal.color', bgColor);
 
       // 常用的设置
-      this.setGroupSeries(this.groupSeriesItem);
+      this.setGroupSeries(this.groupSeriesItem, options);
     },
     /**
      * @description 对series进行初始化设置
      * @param {Object} options 图表的配置项
      */
     setGroupSeries(seriesObj, options) {
-      if (_isObject(this.groupData)) {
-        this.setGroupObjSeriesData(seriesObj, options);
-      }
-
       if (_isArray(this.groupData)) {
         this.setGroupArraySeriesData(seriesObj, options);
+
+        return false;
+      }
+
+      if (_isObject(this.groupData)) {
+        this.setGroupObjSeriesData(seriesObj, options);
       }
     },
     /**
@@ -203,7 +204,7 @@ export const groupBar = {
       groupNameList.map(key => {
         const item = _cloneDeep(seriesObj);
         const width =
-          Math.floor(this.groupData[key].length / childList.length) * 100 + '%';
+          (this.groupData[key].length / childList.length) * 100 + '%';
 
         _set(item, 'data[0].name', key);
         _set(item, 'barWidth', width);
@@ -217,14 +218,14 @@ export const groupBar = {
      * @param { Object } options 图表的配置项
      */
     setGroupArraySeriesData(seriesObj, options) {
-      const childList = [];
+      let childList = [];
       const seriesItem = _cloneDeep(this.DEFAULT_SERIES);
 
       this.groupData.map(item => {
         if (item[this.props.children] && item[this.props.children].length) {
           const list = item[this.props.children];
 
-          childList.push(list);
+          childList = childList.concat(list);
 
           list.map(ele => {
             options.xAxis[0].data.push(ele[this.props.label]);
@@ -237,15 +238,14 @@ export const groupBar = {
 
       this.groupData.map(item => {
         const seriesItem = _cloneDeep(seriesObj);
+
         const width =
-          Math.floor(item[this.props.children].length / childList.length) *
-            100 +
-          '%';
+          (item[this.props.children].length / childList.length) * 100 + '%';
 
         _set(seriesItem, 'data[0].name', item[this.props.label]);
         _set(seriesItem, 'barWidth', width);
 
-        options.series.push(item);
+        options.series.push(seriesItem);
       });
     }
   }

@@ -26,10 +26,6 @@ import VEmpty from './directives/v-empty.js';
 // iconfont
 import '@/assets/font/iconfont/iconfont.css';
 import '@/assets/font/iconfont/iconfont.js';
-// 阿里巴巴aplus埋点插件
-// import '@plugins/aplus/index.js';
-// tailwind
-// import '@assets/css/tailwind.css';
 
 // 全局通知 巴士事件
 window.GvBus = {};
@@ -59,17 +55,6 @@ window.vm = new Vue({
   router,
   store,
   created() {
-    // created
-    // 载入远程字典
-    // this.$dict.import(this.$api['dict/getDictDataByTypeList']());
-    // 模块常量
-    /* console.info(this.$constant);
-    console.info(
-      '测试环境：',
-      process.env.VUE_APP_TEST,
-      process.env.VUE_APP_ENV
-    );
-    console.log('自定义环境：', process.env.USER_CONFIG_ENV); */
     $log.success('项目启动成功');
   },
   render: h => h(App)

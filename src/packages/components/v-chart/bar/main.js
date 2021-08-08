@@ -120,14 +120,12 @@ export const bar = {
      * @param { Object } options 图表的配置属性
      */
     setPersonalizationOptions(options) {
-      // 当没有传递seriesdata的时候 首先渲染
-      // if (!this.seriesData.length) {
-      //   this.setExtraOptions(options);
-      // }
-      // this.setBarSeriesOptions(options.series);
+      // 设置相关子组件的额外属性
       if (this.setExtraOptions) {
         this.setExtraOptions(options);
       }
+
+      this.setBarSeriesOptions(options.series);
     },
     /**
      * @description 设置柱状图相关的series的配置
@@ -147,7 +145,14 @@ export const bar = {
      * @param { Number } 当前series的下标
      */
     setConfig(name, optionsData, seriesItem, index) {
-      if (!optionsData.type || optionsData.type !== 'bar') return false;
+      // 必须是bar类型的数据
+      if (!seriesItem.type || seriesItem.type !== 'bar') return false;
+      // 如果相关的数据没有的话 返回
+      if (!optionsData) return false;
+
+      const xIndex = _get(seriesItem, 'xAxisIndex', '');
+      // 只设置第一条x轴相关的数据
+      if (xIndex && xIndex !== 0) return false;
 
       if (optionsData && !(optionsData instanceof Array)) {
         _set(seriesItem, name, optionsData);

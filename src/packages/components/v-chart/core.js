@@ -47,8 +47,8 @@ export default function() {
       },
       // 图表的配置项，基于默认的配置进行拓展
       chartOptions: {
-        type: Object,
-        default: () => {}
+        type: Object | Function
+        // default: () => {}
       },
       // 展示提示框
       showTooltip: {
@@ -184,8 +184,13 @@ export default function() {
           this.setPersonalizationOptions(options);
         }
 
-        // 将外部传入的配置属性与初始属性进行合并
-        options = _mergeWith(options, this.chartOptions);
+        // 也可以通过回调函数对原有的options进行改变
+        if (typeof this.chartOptions === 'function') {
+          options = this.chartOptions(options);
+        } else {
+          // 将外部传入的配置属性与初始属性进行合并
+          options = _mergeWith(options, this.chartOptions);
+        }
 
         const container = document.getElementById(this._uid);
 
@@ -369,7 +374,9 @@ export default function() {
 
         this.initChart();
       },
-      // 自动重绘
+      /**
+       * @description 自动重绘图表
+       */
       autoResizeChart() {
         if (!this.autoResize) {
           return false;

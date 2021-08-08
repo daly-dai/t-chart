@@ -1,8 +1,6 @@
 /**
  * @desc 前端常用工具方法
  */
-import { openLink } from 'gdt-jsapi';
-import { env } from 'dingtalk-jsapi';
 
 const timeFix = function() {
   const time = new Date();
@@ -987,34 +985,6 @@ const sensitiveField = (field, before = 3, after = 4) => {
   return field.replace(reg, '$1*****$2');
 };
 
-// 钉钉内部window.open封装
-const dingOpen = (url = '') => {
-  const index = url.indexOf('?');
-  let str = '';
-  if (index > -1) {
-    str = url + '&ddtab=true';
-  } else {
-    str = url + '?ddtab=true';
-  }
-  // console.log(dd);
-  // console.log(dd.env.platform === 'notInDingTalk');
-  if (env.platform === 'notInDingTalk') {
-    window.open(str);
-  } else {
-    openLink({
-      url: str
-    });
-  }
-  // dd.ready(function() {
-  //   console.log(dd.env.platform === 'notInDingTalk');
-  //   gdtdd.openLink({
-  //     url: str
-  //   });
-  // });
-
-  // window.open(str);
-};
-
 export {
   timeFix,
   apply,
@@ -1088,6 +1058,5 @@ export {
   getScrollPosition,
   removeClass,
   addClass,
-  sensitiveField,
-  dingOpen
+  sensitiveField
 };

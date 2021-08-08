@@ -1,14 +1,11 @@
 <template>
   <div class="basicChartBox">
-    <!-- <base-bar-chart
+    <base-group-bar-chart
+      :barWidth="'30%'"
       ref="barChart"
-      :xAxisData="barChart.xAxisData"
-      :seriesData="barChart.seriesData"
-      :seriesOptions="barChart.seriesOptions"
-      theme="light"
-      :gird="{ left: '10%' }"
-    ></base-bar-chart> -->
-    <base-group-bar-chart ref="barChart" :groupData="barChart.groupData">
+      :groupData="barChart.groupData"
+      :chartOptions="chartOptions"
+    >
     </base-group-bar-chart>
   </div>
 </template>
@@ -17,50 +14,44 @@ export default {
   data() {
     return {
       barChart: {
-        groupData: [
-          {
-            label: '分组一',
-            children: [
-              {
-                label: '测试一',
-                value: 20
-              },
-              {
-                label: '测试二',
-                value: 20
-              },
-              {
-                label: '测试三',
-                value: 20
-              },
-              {
-                label: '测试四',
-                value: 20
-              }
-            ]
-          },
-          {
-            label: '分组二',
-            children: [
-              {
-                label: '测试四',
-                value: 20
-              },
-              {
-                label: '测试五',
-                value: 20
-              },
-              {
-                label: '测试六',
-                value: 20
-              },
-              {
-                label: '测试七',
-                value: 20
-              }
-            ]
-          }
-        ]
+        groupData: {
+          分组一: [
+            {
+              label: '测试一',
+              value: 20
+            },
+            {
+              label: '测试二',
+              value: 30
+            },
+            {
+              label: '测试三',
+              value: 40
+            },
+            {
+              label: '测试四',
+              value: 50
+            }
+          ],
+          分组二: [
+            {
+              label: '测试四',
+              value: 20
+            },
+            {
+              label: '测试五',
+              value: 20
+            },
+            {
+              label: '测试六',
+              value: 20
+            },
+            {
+              label: '测试七',
+              value: 20
+            }
+          ]
+        }
       }
     };
   },
@@ -69,7 +60,13 @@ export default {
       this.$refs.barChart.initChart();
     });
   },
-  methods: {}
+  methods: {
+    chartOptions(options) {
+      console.log(options, 7777);
+
+      return options;
+    }
+  }
 };
 </script>
 <style>
