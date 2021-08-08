@@ -5,6 +5,7 @@
       ref="barChart"
       :groupData="barChart.groupData"
       :chartOptions="chartOptions"
+      :props="barChart.props"
     >
     </base-group-bar-chart>
   </div>
@@ -14,41 +15,45 @@ export default {
   data() {
     return {
       barChart: {
+        props: {
+          label: 'name',
+          value: 'data'
+        },
         groupData: {
           分组一: [
             {
-              label: '测试一',
-              value: 20
+              name: '测试一',
+              data: 20
             },
             {
-              label: '测试二',
-              value: 30
+              name: '测试二',
+              data: 30
             },
             {
-              label: '测试三',
-              value: 40
+              name: '测试三',
+              data: 40
             },
             {
-              label: '测试四',
-              value: 50
+              name: '测试四',
+              data: 50
             }
           ],
           分组二: [
             {
-              label: '测试四',
-              value: 20
+              name: '测试四',
+              data: 20
             },
             {
-              label: '测试五',
-              value: 20
+              name: '测试五',
+              data: 20
             },
             {
-              label: '测试六',
-              value: 20
+              name: '测试六',
+              data: 20
             },
             {
-              label: '测试七',
-              value: 20
+              name: '测试七',
+              data: 20
             }
           ]
         }

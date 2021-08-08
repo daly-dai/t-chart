@@ -1,6 +1,7 @@
 import _cloneDeep from 'lodash/cloneDeep';
 import _mergeWith from 'lodash/mergeWith';
 import _set from 'lodash/set';
+import _get from 'lodash/get';
 import model from '../model/bar.js';
 
 export const bar = {

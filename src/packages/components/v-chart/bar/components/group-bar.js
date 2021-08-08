@@ -2,6 +2,8 @@ import _set from 'lodash/set';
 import _cloneDeep from 'lodash/cloneDeep';
 import _isObject from 'lodash/isObject';
 import _isArray from 'lodash/isArray';
+import _keys from 'lodash/keys';
+import _get from 'lodash/get';
 
 export const groupBar = {
   name: 'BaseGroupBarChart',
