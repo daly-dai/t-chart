@@ -36,7 +36,8 @@ export const bar = {
     this.DEFAULT_SERIES = {
       name: '',
       type: 'bar',
-      data: []
+      data: [],
+      itemStyle: {}
     };
 
     this.DEFAULT_OPTION = {

@@ -25,6 +25,12 @@ export const groupBar = {
       type: Object | Array
     },
     /**
+     * @description 分组的颜色
+     */
+    groupColor: {
+      type: Array | Function
+    },
+    /**
      * @description 分组的布局设置
      */
     groupGird: {
@@ -124,6 +130,8 @@ export const groupBar = {
         xAxisIndex: 1,
         yAxisIndex: 1
       };
+
+      this.groupBarColor = [];
     },
     /**
      * @description 配置额外的配置
@@ -164,6 +172,10 @@ export const groupBar = {
 
       // 常用的设置
       this.setGroupSeries(this.groupSeriesItem, options);
+
+      if (this.groupColor) {
+        this.setGroupBarColor(options.series);
+      }
     },
     /**
      * @description 对series进行初始化设置
@@ -189,8 +201,9 @@ export const groupBar = {
       const groupNameList = _keys(this.groupData);
       const childList = [];
       const seriesItem = _cloneDeep(this.DEFAULT_SERIES);
+      const setColorStatus = _isArray(this.groupColor);
 
-      groupNameList.map(key => {
+      groupNameList.map((key, index) => {
         const list = this.groupData[key];
 
         childList.push(list);
@@ -198,6 +211,10 @@ export const groupBar = {
         (list || []).map(ele => {
           options.xAxis[0].data.push(ele[this.props.label]);
           seriesItem.data.push(ele[this.props.value]);
+          // 设置分组颜色
+          if (setColorStatus) {
+            this.groupBarColor.push(this.groupColor[index] || '');
+          }
         });
       });
 
@@ -222,8 +239,9 @@ export const groupBar = {
     setGroupArraySeriesData(seriesObj, options) {
       let childList = [];
       const seriesItem = _cloneDeep(this.DEFAULT_SERIES);
+      const setColorStatus = _isArray(this.groupColor);
 
-      this.groupData.map(item => {
+      this.groupData.map((item, index) => {
         if (item[this.props.children] && item[this.props.children].length) {
           const list = item[this.props.children];
 
@@ -232,6 +250,9 @@ export const groupBar = {
           list.map(ele => {
             options.xAxis[0].data.push(ele[this.props.label]);
             seriesItem.data.push(ele[this.props.value]);
+            if (setColorStatus) {
+              this.groupBarColor.push(this.groupColor[index] || '');
+            }
           });
         }
       });
@@ -249,6 +270,38 @@ export const groupBar = {
 
         options.series.push(seriesItem);
       });
+    },
+    /**
+     * @description 设置柱状图柱状图
+     * @param { Object } series 配置
+     */
+    setGroupBarColor(series) {
+      const seriesItem = series[0];
+
+      if (typeof this.groupColor === 'function') {
+        seriesItem.itemStyle.color = params => {
+          return this.groupColor(params);
+        };
+
+        return false;
+      }
+
+      if (!_isArray(this.groupColor)) return false;
+
+      if (this.groupColor.length === _get(seriesItem, 'data').length) {
+        seriesItem.itemStyle.color = params => {
+          return this.groupColor[params.dataIndex];
+        };
+
+        return false;
+      }
+
+      console.log(this.groupBarColor, 888888);
+      if (this.groupBarColor.length) {
+        seriesItem.itemStyle.color = params => {
+          return this.groupBarColor[params.dataIndex];
+        };
+      }
     }
   }
 };
