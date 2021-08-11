@@ -34,3 +34,14 @@ export const LEGEND_EVENT_LIST = {
   legendinverseselect: 'legendInverseSelect',
   legendscroll: 'legendscroll'
 };
+
+// eslint-disable-next-line import/group-exports
+export const DEFAULT_LINE_COLOR = {
+  type: 'linear',
+  x: 0,
+  y: 0,
+  x2: 0,
+  y2: 1,
+  colorStops: [],
+  global: false // 缺省为 false
+};

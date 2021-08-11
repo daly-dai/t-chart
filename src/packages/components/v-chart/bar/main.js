@@ -2,17 +2,26 @@ import _cloneDeep from 'lodash/cloneDeep';
 import _mergeWith from 'lodash/mergeWith';
 import _set from 'lodash/set';
 import _get from 'lodash/get';
+import _isArray from 'lodash/isArray';
+import _isNil from 'lodash/isNil';
+import _isString from 'lodash/isString';
+
 import model from '../model/bar.js';
+import { DEFAULT_LINE_COLOR } from '../constant/index';
 
 export const bar = {
   name: 'BaseBarChart',
   props: {
-    // x轴的数据
+    /**
+     * @description x轴的数据
+     */
     xAxisData: {
       type: Array,
       default: () => []
     },
-    // y轴的数据
+    /**
+     * @description y轴的数据
+     */
     yAxisData: {
       type: Array,
       default: () => []
@@ -28,6 +37,12 @@ export const bar = {
      */
     barColor: {
       style: String | Object | Array
+    },
+    /**
+     * @description 柱状图的背景颜色
+     */
+    barBackground: {
+      type: String | Array
     }
   },
   data() {
@@ -135,29 +150,57 @@ export const bar = {
      */
     setBarSeriesOptions(seriesData) {
       seriesData.map((item, index) => {
-        this.setConfig('barWidth', this.barWidth, item, index);
-        this.setConfig('itemStyle.color', this.barColor, item, index);
+        // 设置柱状图宽度
+        this.setConfig({
+          path: 'barWidth',
+          optionsData: this.barWidth,
+          seriesItem: item,
+          index
+        });
+
+        this.setBarColor({ seriesItem: item, index });
+
+        // 设置柱状图背景颜色
+        if (!_isNil(this.barBackground)) {
+          this.setConfig({
+            path: 'backgroundStyle.color',
+            optionsData: this.barBackground,
+            seriesItem: item,
+            index
+          });
+
+          this.setConfig({
+            path: 'showBackground',
+            optionsData: true,
+            seriesItem: item,
+            index
+          });
+        }
       });
     },
     /**
      * @description 对相关属性进行配置
-     * @param { String } name 属性的路径
+     * @param { String } path 属性的路径
      * @param {String | Array} optionsData 配置的数据
      * @param { Object } 当前series对象
      * @param { Number } 当前series的下标
+     * @param { Object } 依赖的配置项
      */
-    setConfig(name, optionsData, seriesItem, index) {
+    setConfig({ path, optionsData, seriesItem, index }) {
       // 必须是bar类型的数据
-      if (!seriesItem.type || seriesItem.type !== 'bar') return false;
+      if (_isNil(seriesItem.type) || seriesItem.type !== 'bar') return false;
+
       // 如果相关的数据没有的话 返回
-      if (!optionsData) return false;
+      if (_isNil(optionsData)) return false;
 
       const xIndex = _get(seriesItem, 'xAxisIndex', '');
+
       // 只设置第一条x轴相关的数据
       if (xIndex && xIndex !== 0) return false;
 
-      if (optionsData && !(optionsData instanceof Array)) {
-        _set(seriesItem, name, optionsData);
+      if (!_isArray(optionsData)) {
+        _set(seriesItem, path, optionsData);
+
         return false;
       }
 
@@ -165,9 +208,50 @@ export const bar = {
 
       if (!optionsData[0]) return false;
 
-      const data = optionsData[index] ?? optionsData[0];
+      const data = optionsData[index] || optionsData[0];
 
-      _set(seriesItem, name, data);
+      _set(seriesItem, path, data);
+    },
+    /**
+     * @description 设置柱子的颜色
+     * @param { Object } seriesItem 当前的series配置
+     * @param { Number } index 当前series的下标
+     */
+    setBarColor({ seriesItem, index }) {
+      if (!this.barColor) return false;
+
+      if (_isString(this.barColor)) {
+        _set(seriesItem, 'itemStyle.color', this.barColor);
+        return false;
+      }
+
+      if (!_isArray(this.barColor)) return false;
+
+      if (!this.barColor[index]) return false;
+
+      if (_isString(this.barColor[index])) {
+        _set(seriesItem, 'itemStyle.color', this.barColor[index]);
+        return false;
+      }
+
+      if (_isArray(this.barColor[index])) {
+        const color = this.barColor[index];
+        const lineColor = _cloneDeep(DEFAULT_LINE_COLOR);
+        // 将传进来的数据进行分组进行颜色的渲染
+        const colorSplit = 1 / color.length;
+        const split = [];
+
+        color.map((item, index) => {
+          const splitItem = { offset: '', color: '' };
+
+          splitItem.offset = index * colorSplit;
+          splitItem.color = item;
+          split.push(splitItem);
+        });
+
+        _set(lineColor, 'colorStops', split);
+        _set(seriesItem, 'itemStyle.color', lineColor);
+      }
     }
   }
 };

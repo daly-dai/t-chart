@@ -81,7 +81,7 @@ const lightTheme = {
       align: 'center'
     },
     axisLine: {
-      show: true
+      show: false
     },
     axisTick: {
       show: false
