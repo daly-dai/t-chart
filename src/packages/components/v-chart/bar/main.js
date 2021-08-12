@@ -4,10 +4,9 @@ import _set from 'lodash/set';
 import _get from 'lodash/get';
 import _isArray from 'lodash/isArray';
 import _isNil from 'lodash/isNil';
-import _isString from 'lodash/isString';
 
 import model from '../model/bar.js';
-import { DEFAULT_LINE_COLOR } from '../constant/index';
+import { setGradientColor } from '../utils';
 
 export const bar = {
   name: 'BaseBarChart',
@@ -36,7 +35,7 @@ export const bar = {
      * @desc 柱状图的颜色
      */
     barColor: {
-      style: String | Object | Array
+      style: String | Array
     },
     /**
      * @description 柱状图的背景颜色
@@ -158,7 +157,13 @@ export const bar = {
           index
         });
 
-        this.setBarColor({ seriesItem: item, index });
+        setGradientColor({
+          seriesItem: item,
+          path: 'itemStyle.color',
+          data: this.barColor,
+          index
+        });
+        // this.setBarColor({ seriesItem: item, index });
 
         // 设置柱状图背景颜色
         if (!_isNil(this.barBackground)) {
@@ -211,47 +216,6 @@ export const bar = {
       const data = optionsData[index] || optionsData[0];
 
       _set(seriesItem, path, data);
-    },
-    /**
-     * @description 设置柱子的颜色
-     * @param { Object } seriesItem 当前的series配置
-     * @param { Number } index 当前series的下标
-     */
-    setBarColor({ seriesItem, index }) {
-      if (!this.barColor) return false;
-
-      if (_isString(this.barColor)) {
-        _set(seriesItem, 'itemStyle.color', this.barColor);
-        return false;
-      }
-
-      if (!_isArray(this.barColor)) return false;
-
-      if (!this.barColor[index]) return false;
-
-      if (_isString(this.barColor[index])) {
-        _set(seriesItem, 'itemStyle.color', this.barColor[index]);
-        return false;
-      }
-
-      if (_isArray(this.barColor[index])) {
-        const color = this.barColor[index];
-        const lineColor = _cloneDeep(DEFAULT_LINE_COLOR);
-        // 将传进来的数据进行分组进行颜色的渲染
-        const colorSplit = 1 / color.length;
-        const split = [];
-
-        color.map((item, index) => {
-          const splitItem = { offset: '', color: '' };
-
-          splitItem.offset = index * colorSplit;
-          splitItem.color = item;
-          split.push(splitItem);
-        });
-
-        _set(lineColor, 'colorStops', split);
-        _set(seriesItem, 'itemStyle.color', lineColor);
-      }
     }
   }
 };

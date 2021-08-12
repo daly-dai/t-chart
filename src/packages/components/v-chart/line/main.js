@@ -3,6 +3,8 @@ import _mergeWith from 'lodash/mergeWith';
 import _set from 'lodash/set';
 import model from '../model/line.js';
 
+import { setGradientColor } from '../utils';
+
 export const line = {
   name: 'BaseLineChart',
   props: {
@@ -22,7 +24,7 @@ export const line = {
       default: false
     },
     // 折线面积区域设置
-    lineAreaOptions: {
+    lineAreaColor: {
       type: Array,
       default: () => []
     }
@@ -107,7 +109,12 @@ export const line = {
         }
 
         if (this.lineAreaOptions.length) {
-          _set(item, 'areaStyle.color', this.lineAreaOptions[index]);
+          setGradientColor({
+            seriesItem: item,
+            path: 'areaStyle.color',
+            data: this.lineAreaColor,
+            index
+          });
         }
       });
     },

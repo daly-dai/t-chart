@@ -1,3 +1,8 @@
+import _isString from 'lodash/isString';
+import _isArray from 'lodash/isArray';
+import _set from 'lodash/set';
+import { DEFAULT_LINE_COLOR } from './constant/index';
+
 /**
  * @description 自定义http请求 请求本地的json数据
  * @param {*} url 请求的地址
@@ -10,10 +15,6 @@ const httpGet = url => {
     xhr.open('GET', url, true);
     xhr.setRequestHeader('Cache-Control', 'no-cache');
     xhr.send(null);
-
-    // xhr.onreadystatechange = () => {
-    //   resolve(JSON.parse(xhr.responseText));
-    // };
 
     xhr.onload = () => {
       resolve(JSON.parse(xhr.responseText));
@@ -116,4 +117,49 @@ const getColorMap = {
   }
 };
 
-export { httpGet, getColorMap };
+/**
+ * @description 设置颜色渐变
+ * @param { Object } seriesItem 当前的series配置
+ * @param { String } path series路径
+ * @param { String | Array } data 设置的数据
+ * @param { Number } index 当前series的下标
+ */
+const setGradientColor = ({ seriesItem, path, data, index }) => {
+  if (!data) return false;
+
+  if (_isString(data)) {
+    _set(seriesItem, path, data);
+    return false;
+  }
+
+  if (!_isArray(data)) return false;
+
+  if (!data[index]) return false;
+
+  if (_isString(data[index])) {
+    _set(seriesItem, path, data[index]);
+
+    return false;
+  }
+
+  if (_isArray(data[index])) {
+    const color = data[index];
+    const lineColor = _cloneDeep(DEFAULT_LINE_COLOR);
+    // 将传进来的数据进行分组进行颜色的渲染
+    const colorSplit = 1 / color.length;
+    const split = [];
+
+    color.map((item, index) => {
+      const splitItem = { offset: '', color: '' };
+
+      splitItem.offset = index * colorSplit;
+      splitItem.color = item;
+      split.push(splitItem);
+    });
+
+    _set(lineColor, 'colorStops', split);
+    _set(seriesItem, path, lineColor);
+  }
+};
+
+export { httpGet, getColorMap, setGradientColor };
