@@ -296,7 +296,6 @@ export const groupBar = {
         return false;
       }
 
-      console.log(this.groupBarColor, 888888);
       if (this.groupBarColor.length) {
         seriesItem.itemStyle.color = params => {
           return this.groupBarColor[params.dataIndex];
