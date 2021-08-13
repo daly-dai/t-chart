@@ -8,8 +8,7 @@ const darkTheme = {
     },
     axisLabel: {
       color: 'rgba(255, 255, 255, 85)',
-      fontSize: 12,
-      align: 'center'
+      fontSize: 12
     },
     axisLine: {
       // 设置轴线
@@ -30,8 +29,7 @@ const darkTheme = {
     },
     axisLabel: {
       color: 'rgba(255, 255, 255, 85)',
-      fontSize: 12,
-      align: 'center'
+      fontSize: 12
     },
     axisLine: {
       show: false

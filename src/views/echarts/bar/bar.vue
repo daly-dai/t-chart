@@ -62,6 +62,9 @@ export default {
   },
   mounted() {
     this.$refs.groupBarChart.initChart();
+    this.$nextTick(() => {
+      console.log(this.$refs.groupBarChart.getChartCurrentOptions(), 898989);
+    });
   }
 };
 </script>

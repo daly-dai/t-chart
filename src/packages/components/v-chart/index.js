@@ -16,8 +16,6 @@ const BaseVChart = {
   BaseGroupBarChart
 };
 
-// export { BaseVChart };
-
 /**
  * @desc 插件入口
  * @param {Object} Vue
