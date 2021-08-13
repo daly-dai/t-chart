@@ -1,6 +1,7 @@
 import _isString from 'lodash/isString';
 import _isArray from 'lodash/isArray';
 import _set from 'lodash/set';
+import _cloneDeep from 'lodash/cloneDeep';
 import { DEFAULT_LINE_COLOR } from './constant/index';
 
 /**

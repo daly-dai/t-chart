@@ -9,6 +9,7 @@ import { getGradientColor } from '../../utils';
 export const groupBar = {
   name: 'BaseGroupBarChart',
   props: {
+    // 分组柱状图的参数
     props: {
       type: Object,
       default() {

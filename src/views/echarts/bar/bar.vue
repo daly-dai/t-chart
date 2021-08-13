@@ -61,9 +61,7 @@ export default {
     };
   },
   mounted() {
-    this.$nextTick(() => {
-      this.$refs.groupBarChart.initChart();
-    });
+    this.$refs.groupBarChart.initChart();
   }
 };
 </script>

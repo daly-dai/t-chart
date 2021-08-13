@@ -142,9 +142,9 @@ export default function() {
         };
       },
       /**
-       * @description 初始化图表
+       * @description 图表渲染初始化
        */
-      initChart() {
+      asyncInitChart() {
         let options = {};
 
         this.getCommonOptions();
@@ -202,6 +202,14 @@ export default function() {
         this.$emit('complete', options);
         this.onChartEvent();
         this.autoResizeChart();
+      },
+      /**
+       * @description 初始化图表
+       */
+      initChart() {
+        this.$nextTick(() => {
+          this.asyncInitChart();
+        });
       },
       /**
        * @description 图表相关事件
