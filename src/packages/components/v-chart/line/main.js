@@ -108,7 +108,7 @@ export const line = {
           _set(item, 'smooth', true);
         }
 
-        if (this.lineAreaOptions.length) {
+        if (this.lineAreaColor.length) {
           setGradientColor({
             seriesItem: item,
             path: 'areaStyle.color',

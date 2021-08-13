@@ -4,6 +4,7 @@ import _isObject from 'lodash/isObject';
 import _isArray from 'lodash/isArray';
 import _keys from 'lodash/keys';
 import _get from 'lodash/get';
+import { getGradientColor } from '../../utils';
 
 export const groupBar = {
   name: 'BaseGroupBarChart',
@@ -182,6 +183,8 @@ export const groupBar = {
      * @param {Object} options 图表的配置项
      */
     setGroupSeries(seriesObj, options) {
+      options.series = [];
+
       if (_isArray(this.groupData)) {
         this.setGroupArraySeriesData(seriesObj, options);
 
@@ -287,6 +290,7 @@ export const groupBar = {
       }
 
       if (!_isArray(this.groupColor)) return false;
+      if (!this.groupBarColor.length) return false;
 
       if (this.groupColor.length === _get(seriesItem, 'data').length) {
         seriesItem.itemStyle.color = params => {
@@ -296,11 +300,13 @@ export const groupBar = {
         return false;
       }
 
-      if (this.groupBarColor.length) {
-        seriesItem.itemStyle.color = params => {
-          return this.groupBarColor[params.dataIndex];
-        };
-      }
+      seriesItem.itemStyle.color = params => {
+        const currentColor = this.groupBarColor[params.dataIndex];
+
+        return _isArray(currentColor)
+          ? getGradientColor(currentColor)
+          : currentColor;
+      };
     }
   }
 };

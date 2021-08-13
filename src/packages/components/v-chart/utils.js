@@ -144,22 +144,32 @@ const setGradientColor = ({ seriesItem, path, data, index }) => {
 
   if (_isArray(data[index])) {
     const color = data[index];
-    const lineColor = _cloneDeep(DEFAULT_LINE_COLOR);
-    // 将传进来的数据进行分组进行颜色的渲染
-    const colorSplit = 1 / color.length;
-    const split = [];
+    const lineColor = getGradientColor(color);
 
-    color.map((item, index) => {
-      const splitItem = { offset: '', color: '' };
-
-      splitItem.offset = index * colorSplit;
-      splitItem.color = item;
-      split.push(splitItem);
-    });
-
-    _set(lineColor, 'colorStops', split);
     _set(seriesItem, path, lineColor);
   }
 };
 
-export { httpGet, getColorMap, setGradientColor };
+/**
+ * @description 获取渐变色的基础配置
+ * @param {Array} colorData 颜色相关数组
+ * @returns 渐变相关配置项
+ */
+const getGradientColor = colorData => {
+  const lineColor = _cloneDeep(DEFAULT_LINE_COLOR);
+  const colorSplit = 1 / colorData.length;
+  const split = [];
+
+  colorData.map((item, index) => {
+    const splitItem = { offset: '', color: '' };
+
+    splitItem.offset = index * colorSplit;
+    splitItem.color = item;
+    split.push(splitItem);
+  });
+
+  _set(lineColor, 'colorStops', split);
+  return lineColor;
+};
+
+export { httpGet, getColorMap, setGradientColor, getGradientColor };

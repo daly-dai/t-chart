@@ -1,15 +1,12 @@
 <template>
   <div class="basicChartBox">
-    <base-bar-chart
-      ref="barChart"
-      :xAxisData="barChart.xAxisData"
-      :seriesData="barChart.seriesData"
-      :seriesOptions="barChart.seriesOptions"
-      :barBackground="barChart.barBackground"
-      :barWidth="30"
-      theme="light"
-      :barColor="barChart.barColor"
-    ></base-bar-chart>
+    <base-group-bar-chart
+      :barWidth="'30%'"
+      ref="groupBarChart"
+      :groupData="barChart.groupData"
+      :groupColor="barChart.groupColor"
+      :props="barChart.props"
+    ></base-group-bar-chart>
   </div>
 </template>
 <script>
@@ -17,30 +14,55 @@ export default {
   data() {
     return {
       barChart: {
-        xAxisData: ['2013', '2014', '2015', '2016', '2017', '2018'],
-        seriesData: [
-          [120, -200, 150, 80, 70, 110],
-          [100, -100, 150, 50, 70, 10]
-        ],
-        seriesOptions: [
-          {
-            name: '相对值'
-          },
-          {
-            name: '绝对值'
-          }
-        ],
-        barColor: [
-          ['rgba(58, 253, 247, 1)', 'rgba(29, 98, 255, 1)'],
-          ['rgba(91, 143, 249, 1)', 'rgba(255, 255, 255, 0)']
-        ],
-        barBackground: 'rgba(180, 180, 180, 0.2)'
+        props: {
+          label: 'name',
+          value: 'data'
+        },
+        groupColor: [['#36EFFF', '#1F6BFF'], '#1F6BFF'],
+        groupData: {
+          分组一: [
+            {
+              name: '测试一',
+              data: 20
+            },
+            {
+              name: '测试二',
+              data: 30
+            },
+            {
+              name: '测试三',
+              data: 40
+            },
+            {
+              name: '测试四',
+              data: 50
+            }
+          ],
+          分组二: [
+            {
+              name: '测试四',
+              data: 20
+            },
+            {
+              name: '测试五',
+              data: 20
+            },
+            {
+              name: '测试六',
+              data: 20
+            },
+            {
+              name: '测试七',
+              data: 20
+            }
+          ]
+        }
       }
     };
   },
   mounted() {
     this.$nextTick(() => {
-      this.$refs.barChart.initChart();
+      this.$refs.groupBarChart.initChart();
     });
   }
 };
