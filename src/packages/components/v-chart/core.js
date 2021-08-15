@@ -65,6 +65,13 @@ export default function() {
         type: Boolean,
         default: true
       },
+      /**
+       * @description 图例的数据
+       */
+      legendData: {
+        type: Array,
+        default: () => []
+      },
       // 颜色主题
       colorTheme: {
         type: Array,
@@ -148,6 +155,7 @@ export default function() {
         let options = {};
 
         this.getCommonOptions();
+
         if (this.setDefaultOptions) {
           this.setDefaultOptions();
         }
@@ -357,6 +365,17 @@ export default function() {
         }
 
         if (!this.seriesOptions || !this.seriesOptions.length) return false;
+
+        if (this.legendData.length) {
+          const legendData = this.legendData.map(item => {
+            return {
+              name: item
+            };
+          });
+
+          _set(options, 'legend.data', legendData);
+          return false;
+        }
 
         const legendData = this.seriesOptions.map(item => item.name);
 

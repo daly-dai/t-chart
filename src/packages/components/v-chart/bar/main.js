@@ -163,7 +163,6 @@ export const bar = {
           data: this.barColor,
           index
         });
-        // this.setBarColor({ seriesItem: item, index });
 
         // 设置柱状图背景颜色
         if (!_isNil(this.barBackground)) {

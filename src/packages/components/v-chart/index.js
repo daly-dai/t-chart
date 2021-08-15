@@ -2,7 +2,7 @@
 import { BaseBarChart, BaseGroupBarChart } from './bar/index.js';
 import { BaseLineChart } from './line/index.js';
 import { BasePieChart } from './pie/index.js';
-import { BaseMixtureChart } from './mixture/index.js';
+import { BaseMixtureChart, BaseBarLineChart } from './mixture/index.js';
 import { BaseGeoChart } from './geo/index.js';
 import { BaseGeoVisualChart } from './geo/geo-visual-map/index.js';
 
@@ -13,7 +13,8 @@ const BaseVChart = {
   BaseMixtureChart,
   BaseGeoChart,
   BaseGeoVisualChart,
-  BaseGroupBarChart
+  BaseGroupBarChart,
+  BaseBarLineChart
 };
 
 /**

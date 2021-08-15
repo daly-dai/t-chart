@@ -2,6 +2,8 @@ import _isString from 'lodash/isString';
 import _isArray from 'lodash/isArray';
 import _set from 'lodash/set';
 import _cloneDeep from 'lodash/cloneDeep';
+import _isNil from 'lodash/isNil';
+import _get from 'lodash/get';
 import { DEFAULT_LINE_COLOR } from './constant/index';
 
 /**
@@ -157,8 +159,10 @@ const setGradientColor = ({ seriesItem, path, data, index }) => {
  * @returns 渐变相关配置项
  */
 const getGradientColor = colorData => {
+  if (colorData.length < 2) return false;
+
   const lineColor = _cloneDeep(DEFAULT_LINE_COLOR);
-  const colorSplit = 1 / colorData.length;
+  const colorSplit = 1 / (colorData.length - 1);
   const split = [];
 
   colorData.map((item, index) => {
@@ -173,4 +177,42 @@ const getGradientColor = colorData => {
   return lineColor;
 };
 
-export { httpGet, getColorMap, setGradientColor, getGradientColor };
+/**
+ * @description 对相关属性进行配置
+ * @param { String } path 属性的路径
+ * @param {String | Array} optionsData 配置的数据
+ * @param { Object } 当前series对象
+ * @param { Number } 当前series的下标
+ * @param { Object } 依赖的配置项
+ */
+const setSeriesConfig = ({ path, optionsData, seriesItem, index }) => {
+  if (_isNil(seriesItem.type)) return false;
+
+  // 如果相关的数据没有的话 返回
+  if (_isNil(optionsData)) return false;
+
+  const xIndex = _get(seriesItem, 'xAxisIndex', '');
+
+  // 只设置第一条x轴相关的数据
+  if (xIndex && xIndex !== 0) return false;
+
+  if (!_isArray(optionsData)) {
+    _set(seriesItem, path, optionsData);
+
+    return false;
+  }
+
+  if (!optionsData[0]) return false;
+
+  const data = optionsData[index] || optionsData[0];
+
+  _set(seriesItem, path, data);
+};
+
+export {
+  httpGet,
+  getColorMap,
+  setGradientColor,
+  getGradientColor,
+  setSeriesConfig
+};

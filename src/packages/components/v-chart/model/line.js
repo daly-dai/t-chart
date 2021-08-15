@@ -44,8 +44,7 @@ const lightTheme = {
     },
     axisLabel: {
       color: 'rgba(0, 0, 0, 0.85)',
-      fontSize: 12,
-      align: 'center'
+      fontSize: 12
     }
   },
   yAxis: {
@@ -60,8 +59,7 @@ const lightTheme = {
     },
     axisLabel: {
       color: 'rgba(0, 0, 0, 0.85)',
-      fontSize: 12,
-      align: 'center'
+      fontSize: 12
     },
     axisLine: {
       show: false

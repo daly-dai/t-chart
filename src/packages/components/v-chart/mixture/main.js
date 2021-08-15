@@ -61,12 +61,10 @@ export const line = {
           alignWithLabel: true
         }
       },
-      yAxis: [
-        {
-          type: 'value',
-          data: []
-        }
-      ],
+      yAxis: {
+        type: 'value',
+        data: []
+      },
       series: []
     };
 
@@ -75,11 +73,11 @@ export const line = {
   methods: {
     /**
      * @description 设置x轴或者y轴相关的数据
-     * @param { Object } options 图表相关配置
+     * @param { Object } options 图表x轴或y轴相关配置
      * @params { string } axis xAxis yAxis
      */
     setAxisData(options, data) {
-      if (!data || !data.length > 0) return options;
+      if (!data || !data.length) return options;
 
       // XAxisData一维数组时
       if (!(data[0] instanceof Array)) {
@@ -98,6 +96,16 @@ export const line = {
       });
 
       return axisOptions;
+    },
+    /**
+     * @description 设置混合视图进行个性化配置
+     * @param { Object } options 图表的配置属性
+     */
+    setPersonalizationOptions(options) {
+      // 设置相关子组件的额外属性
+      if (this.setExtraOptions) {
+        this.setExtraOptions(options);
+      }
     }
   }
 };
