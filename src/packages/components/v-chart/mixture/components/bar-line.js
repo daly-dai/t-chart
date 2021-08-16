@@ -1,6 +1,8 @@
 import _keys from 'lodash/keys';
 import _mergeWith from 'lodash/mergeWith';
 import _get from 'lodash/get';
+import _cloneDeep from 'lodash/cloneDeep';
+import _set from 'lodash/set';
 import { setSeriesConfig, setGradientColor } from '../../utils';
 import model from '../../model/mixture.js';
 

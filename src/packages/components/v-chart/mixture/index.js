@@ -2,6 +2,7 @@
  * @desc 折线和柱状图
  */
 import _mergeWith from 'lodash/mergeWith';
+import _cloneDeep from 'lodash/cloneDeep';
 import Core from '../core.js';
 import { line } from './main.js';
 import { barLine } from './components/bar-line.js';
